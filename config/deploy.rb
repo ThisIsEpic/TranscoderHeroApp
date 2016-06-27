@@ -8,7 +8,6 @@ set :user, 'deploy'
 ask :branch, :master
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_via, :remote_cache
 set :deploy_to, "/home/#{fetch(:user)}/apps/#{fetch(:application)}"
 set :rails_env, "production"
 
