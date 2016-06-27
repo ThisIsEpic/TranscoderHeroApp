@@ -1,0 +1,30 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title MediaPlatform
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    .ui.container
+      .ui.large.text.menu
+        .item= link_to 'Transcode Hero', root_path
+
+        - unless user_signed_in?
+          = link_to 'Sign up', new_user_registration_path, class: 'item'
+
+        - if user_signed_in?
+          .ui.dropdown.right.item
+            = current_user.email
+            (#{current_app.name})
+            .dropdown.icon
+            .ui.vertical.menu
+              .item= link_to 'Manage Apps', apps_path
+              .item= link_to 'New App', new_app_path
+              - my_apps.each do |app|
+                .item= link_to app.name, set_default_app_path(app), method: :post
+              .item= link_to 'logout', destroy_user_session_path, method: :delete
+    .ui.container
+      .ui.grid
+        = yield

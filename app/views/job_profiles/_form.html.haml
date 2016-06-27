@@ -1,0 +1,30 @@
+= form_for [:app, @profile], html: { class: 'ui large form' } do |f|
+  .field
+    = f.label 'Profile name'
+    = f.text_field :name
+    %p Give your job profile a descriptive name. Ex: Activity Stream Videos
+
+  %h4.ui.top.attached.header Platform Support
+  .ui.attached.segment
+    %p which platforms do you need to support?
+    .ui.form
+      .inline.field
+        .ui.toggle.checkbox
+          = check_box_tag :platform, :html5
+          %label HTML5
+      .inline.field
+        .ui.toggle.checkbox
+          = check_box_tag :platform, :html5
+          %label iPhone
+      .inline.field
+        .ui.toggle.checkbox
+          = check_box_tag :platform, :html5
+          %label Android
+
+  %h4.ui.top.attached.header Video Quality
+  .ui.attached.segment
+    .ui.form
+      .inline.field
+        .ui.toggle.checkbox
+          = check_box_tag :platform, :html5
+          %label Support High Definition Playback? (HD)

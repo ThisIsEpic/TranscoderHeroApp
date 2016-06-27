@@ -1,0 +1,14 @@
+= form_for @app, html: { class: 'ui large form' } do |f|
+  .field
+    = f.label 'App name'
+    .ui.massive.input
+      = f.text_field :name
+
+  .field
+    = f.label 'App root url'
+    .ui.labeled.input
+      .ui.label http://
+      = f.text_field :url, placeholder: 'facebook.com'
+    %p ex: facebook.com
+
+  %button.ui.submit.button Create App

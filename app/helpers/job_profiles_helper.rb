@@ -1,0 +1,2 @@
+module JobProfilesHelper
+end
