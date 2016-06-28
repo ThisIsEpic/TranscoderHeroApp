@@ -11,7 +11,7 @@ set :puma_workers,    0
 set :pty,             true
 set :use_sudo,        true
 set :stage,           :production
-set :deploy_via,      :copy
+set :deploy_via,      :remote_cache
 set :deploy_to,       "/home/deploy/apps/#{fetch(:application)}"
 set :puma_bind,       "unix://#{shared_path}/tmp/sockets/#{fetch(:application)}-puma.sock"
 set :puma_state,      "#{shared_path}/tmp/pids/puma.state"
