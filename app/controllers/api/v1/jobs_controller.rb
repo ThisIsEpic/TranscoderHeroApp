@@ -3,8 +3,11 @@ class Api::V1::JobsController < Api::V1::BaseController
   end
 
   def create
-    puts params.inspect
-    render json: 'No Content'
+    if TranscodingJob.create job_params
+      render json: job_params, status: :created
+    else
+      head :bad_request
+    end
   end
 
   private

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  app: one
+  input: MyString
+  override: 
+  profiles: 
+
+two:
+  app: two
+  input: MyString
+  override: 
+  profiles: 
