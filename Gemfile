@@ -24,7 +24,6 @@ gem 'jbuilder', '~> 2.5'
 gem 'haml-rails'
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 gem 'devise', github: 'plataformatec/devise'
-gem 'transcoder_hero', path: '/Users/Zack/Development/MediaPlatform/transcoder_hero'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
