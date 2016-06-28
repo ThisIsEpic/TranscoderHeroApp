@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160624193140) do
+ActiveRecord::Schema.define(version: 20160628120640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,9 +19,14 @@ ActiveRecord::Schema.define(version: 20160624193140) do
     t.integer  "user_id"
     t.string   "name"
     t.string   "access_token"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.string   "url"
+    t.string   "encrypted_s3_access_key_id"
+    t.string   "encrypted_s3_secret_access_key"
+    t.string   "encrypted_s3_access_key_id_iv"
+    t.string   "encrypted_s3_secret_access_key_iv"
+    t.string   "s3_output_bucket"
     t.index ["user_id"], name: "index_apps_on_user_id", using: :btree
   end
 

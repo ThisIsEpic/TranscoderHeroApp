@@ -41,6 +41,7 @@ class AppsController < ApplicationController
   end
 
   def app_params
-    params.require(:app).permit :name, :url
+    params.require(:app).permit :name, :url, :s3_access_key_id,
+                                :s3_secret_access_key
   end
 end

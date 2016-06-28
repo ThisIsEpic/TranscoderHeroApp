@@ -10,15 +10,15 @@
     .ui.form
       .inline.field
         .ui.toggle.checkbox
-          = check_box_tag :platform, :html5
+          = check_box_tag 'platforms[]', :html5
           %label HTML5
       .inline.field
         .ui.toggle.checkbox
-          = check_box_tag :platform, :html5
+          = check_box_tag 'platforms[]', :ios
           %label iPhone
       .inline.field
         .ui.toggle.checkbox
-          = check_box_tag :platform, :html5
+          = check_box_tag 'platforms[]', :android
           %label Android
 
   %h4.ui.top.attached.header Video Quality
@@ -28,3 +28,34 @@
         .ui.toggle.checkbox
           = check_box_tag :platform, :html5
           %label Support High Definition Playback? (HD)
+
+  %h4.ui.top.attached.header Video Resize
+  .ui.attached.segment
+    %p Any transformations performed will always maintain aspect ratio.
+    .ui.form
+      .inline.fields
+        .inline.field
+          %label width
+          = number_field_tag :width
+        .inline.field
+          %label height
+          = number_field_tag :height
+
+  %h4.ui.top.attached.header Video Crop
+  .ui.attached.segment
+    .ui.form
+      .inline.field
+        .ui.toggle.checkbox
+          = check_box_tag :crop, :square
+          %label Crop video as a square
+
+  %h4.ui.top.attached.header Thumbnails
+  .ui.attached.segment
+    %p
+      Thumbnails are created using the finalized video after any cropping
+      and scaling is performed.
+    .ui.form
+      .inline.field
+        .ui.toggle.checkbox
+          = check_box_tag :thumbnails, :every
+          %label Extract All Frames as Thumbnails

@@ -24,6 +24,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'haml-rails'
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 gem 'devise', github: 'plataformatec/devise'
+gem 'attr_encrypted', '~> 3.0.0'
+gem 'aws-sdk', '~> 2'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

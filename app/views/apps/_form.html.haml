@@ -3,12 +3,26 @@
     = f.label 'App name'
     .ui.massive.input
       = f.text_field :name
-
+    %p Something to jog your memory 6 months from now
   .field
     = f.label 'App root url'
     .ui.labeled.input
       .ui.label http://
       = f.text_field :url, placeholder: 'facebook.com'
     %p ex: facebook.com
+
+  .ui.section.divider
+  %h3.ui.header Amazon S3
+  .field
+    = f.label 'Access Key ID'
+    = f.text_field :s3_access_key_id
+
+  .field
+    = f.label 'Secret Access Key'
+    = f.text_field :s3_secret_access_key
+
+  %p
+    Clicking the "Create App" button will connect to your S3 account and
+    generate a bucket where we will output your transcoded videos & thumbnails.
 
   %button.ui.submit.button Create App
