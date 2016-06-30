@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   scope module: :api, defaults: { format: :json } do
     %w(v1).each do |version|
       namespace version do
-        resources :jobs
+        resources :jobs do
+          post :webhook
+        end
       end
     end
   end

@@ -1,3 +1,4 @@
+require 'fileutils'
 require 'open-uri'
 require 'mime/types'
 
@@ -28,7 +29,10 @@ class RemoteFileManager
     raise UnsupportedFileTypeError unless video?
     raise 'Specify where to save the file' unless local_path
 
+    FileUtils.mkdir_p(File.dirname(local_path))
     IO.copy_stream(open(@uri.to_s), local_path)
+
+    File.exist?(local_path) ? File.new(local_path) : false
   end
 
   class UnsupportedFileTypeError < StandardError; end

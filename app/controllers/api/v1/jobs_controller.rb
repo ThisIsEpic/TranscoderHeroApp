@@ -1,19 +1,32 @@
 class Api::V1::JobsController < Api::V1::BaseController
+  skip_before_action :requires_authentication_token, only: %w(webhook)
+
   def index
   end
 
   def create
-    if TranscodingJob.create job_params
-      render json: job_params, status: :created
+    job = current_app.jobs.new(job_params)
+    if job.valid?
+      job.save
+      render json: {
+        job: job
+      }, status: :created
     else
-      head :bad_request
+      render json: {
+        errors: job.errors.full_messages
+      }, status: :unprocessable_entity
     end
+  end
+
+  def webhook
+    puts JSON.parse(params[:job]).inspect
+    head :ok
   end
 
   private
 
   def job_params
-    params.require(:job).permit :input, profiles: [], override: {}
+    params.require(:job).permit :input, :webhook_url, profiles: [], override: {}
   end
 end
 

@@ -28,6 +28,8 @@ gem 'attr_encrypted', '~> 3.0.0'
 gem 'aws-sdk', '~> 2'
 gem 'aasm'
 gem 'sidekiq'
+gem 'rest-client'
+gem 'validate_url'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -39,6 +41,9 @@ gem 'sidekiq'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'awesome_print'
+  gem 'pry-rails'
+  gem 'pry'
 end
 
 group :development do

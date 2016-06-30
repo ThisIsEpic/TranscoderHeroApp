@@ -37,7 +37,7 @@ set :rvm_ruby_version, '2.3.0'
 
 ## Linked Files & Directories (Default None):
 set :linked_files, %w{config/database.yml config/application.yml config/secrets.yml}
-set :linked_dirs,  %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+set :linked_dirs,  %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads}
 
 namespace :puma do
   desc 'Create Directories for Puma Pids and Socket'

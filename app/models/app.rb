@@ -1,5 +1,6 @@
 class App < ApplicationRecord
   belongs_to :user
+  has_many :jobs, class_name: 'TranscodingJob'
   has_many :profiles, class_name: 'JobProfile'
 
   attr_encrypted :s3_access_key_id, key: -> (_) { Rails.application.secrets.encryption_key }
