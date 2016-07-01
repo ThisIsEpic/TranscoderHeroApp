@@ -1,12 +1,22 @@
-.sixteen.wide.column
-  %h3.ui.huge.header= @app.name
+.ui.container
+  .ui.grid
+    .sixteen.wide.column
+      %h3.ui.huge.header= @app.name
 
-  .ui.list
-    .item
-      .content
-        .header Url
-        .description= @app.url
-    .item
-      .content
-        .header Access token
-        .description= @app.access_token
+      .ui.list
+        .item
+          .content
+            .header Url
+            .description= @app.url
+        .item
+          .content
+            .header S3 Bucket Name
+            .description= @app.s3_output_bucket
+        .item
+          .content
+            .header Access token
+            .description= @app.access_token
+        .item
+          .content
+            .header Total Jobs
+            .description= @app.jobs.count
