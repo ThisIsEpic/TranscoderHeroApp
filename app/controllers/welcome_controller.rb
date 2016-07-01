@@ -4,5 +4,9 @@ class WelcomeController < ApplicationController
   end
 
   def dashboard
+    @jobs = current_user.jobs
+    @failed_jobs = @jobs.failed
+    @completed_jobs = @jobs.completed
+    @processing_jobs = @jobs.processing
   end
 end

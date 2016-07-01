@@ -4,21 +4,35 @@
       .ui.four.statistics
         .statistic
           .value
-            356
+            = @jobs.count
           .label
-            Jobs
+            Total #{'Job'.pluralize(@jobs.count)}
         .statistic
           .value
-            87
+            = @completed_jobs.count
           .label
-            GB Total
+            Successful #{'Job'.pluralize(@completed_jobs.count)}
         .statistic
           .value
-            2
+            = @failed_jobs.count
           .label
-            Failed Jobs
+            Failed #{'Job'.pluralize(@failed_jobs.count)}
         .statistic
           .value
-            354
+            = @processing_jobs.count
           .label
-            Successfull Jobs
+            Processing #{'Job'.pluralize(@processing_jobs.count)}
+
+    %h2.ui.header Current Jobs
+    %table.ui.celled.table
+      %thead
+        %tr
+          %th Job ID
+          %th Progress
+      %tbody
+        - @processing_jobs.each do |job|
+          %tr
+            %td= job.id
+            %td
+              .ui.indicating.green.progress{ data: { value: 0.5, total: 1.0 } }
+                .bar
