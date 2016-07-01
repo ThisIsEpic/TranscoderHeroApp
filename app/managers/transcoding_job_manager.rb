@@ -1,4 +1,4 @@
-require 'Open3'
+require 'open3'
 
 class TranscodingJobManager
   attr_reader :encoded
@@ -25,7 +25,7 @@ class TranscodingJobManager
 
   def upload_products
     if encoded.valid?
-      
+
     else
       @job.fail!
       return false
