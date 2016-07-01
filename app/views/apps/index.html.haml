@@ -1,24 +1,25 @@
-.sixteen.column
-  %h3.ui.medium.header Your Apps
+.ui.container
+  .sixteen.column
+    %h3.ui.medium.header Your Apps
 
-  .ui.segment.basic
-    %p= link_to 'Add a new app', new_app_path
+    .ui.segment.basic
+      %p= link_to 'Add a new app', new_app_path
 
-  %table.ui.celled.table
-    %thead
-      %tr
-        %th Name
-        %th Url
-        %th
-        %th
-        %th
-        %th
-    %tbody
-      - @apps.each do |app|
+    %table.ui.celled.table
+      %thead
         %tr
-          %td= app.name
-          %td= app.url
-          %td= link_to 'profiles', app_job_profiles_path(app)
-          %td= link_to 'add profile', new_app_job_profile_path(app)
-          %td= link_to 'view', app_path(app)
-          %td= link_to 'edit', edit_app_path(app)
+          %th Name
+          %th Url
+          %th
+          %th
+          %th
+          %th
+      %tbody
+        - @apps.each do |app|
+          %tr
+            %td= app.name
+            %td= app.url
+            %td= link_to 'profiles', app_job_profiles_path(app)
+            %td= link_to 'add profile', new_app_job_profile_path(app)
+            %td= link_to 'view', app_path(app)
+            %td= link_to 'edit', edit_app_path(app)

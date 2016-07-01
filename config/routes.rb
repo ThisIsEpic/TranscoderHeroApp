@@ -13,9 +13,6 @@ Rails.application.routes.draw do
   end
 
   resources :apps, shallow: true do
-    member do
-      post :set_default
-    end
     resources :job_profiles, path: :profiles
     resources :jobs
   end

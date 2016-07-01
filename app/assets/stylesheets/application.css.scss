@@ -1,6 +1,40 @@
  @import "semantic-ui";
 
+body {
+  padding-top: 90px;
+  &.signed-in {
+    padding-top: 120px;
+  }
+}
+
 .main-logo {
   height: 60px;
   width: auto;
+}
+
+.main.menu {
+  background-color: #fff;
+}
+
+.masthead.segment {
+  background: url(image-path('blue_banner.png')) top center no-repeat !important;
+  background-size: contain;
+  text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.50);
+  min-height: 700px;
+  h1.ui.header {
+    margin-top: 3em;
+    margin-bottom: 0em;
+    font-size: 4em;
+    font-weight: normal;
+  }
+}
+
+.registration-form {
+  form {
+    text-align: left;
+  }
+}
+
+.column.narrow-form {
+  max-width: 450px;
 }

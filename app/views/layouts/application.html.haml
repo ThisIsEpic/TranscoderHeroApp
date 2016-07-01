@@ -6,15 +6,17 @@
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-  %body
-    .ui.container
-      .ui.large.text.menu
+  %body{ class: user_signed_in? ? 'signed-in' : '' }
+    .ui.top.fixed.menu.main
+      .ui.container
         .item
           = link_to root_path do
             = image_tag 'Transcoder-Hero.png', class: 'main-logo'
 
         - unless user_signed_in?
-          = link_to 'Sign up', new_user_registration_path, class: 'item'
+          .right.menu
+            .item= link_to 'Sign up', new_user_registration_path
+            .item= link_to 'Log in', new_user_session_path
 
         - if user_signed_in?
           .ui.dropdown.right.item
@@ -23,9 +25,6 @@
             .ui.vertical.menu
               .item= link_to 'Manage Apps', apps_path
               .item= link_to 'New App', new_app_path
-              - my_apps.each do |app|
-                .item= link_to app.name, set_default_app_path(app), method: :post
               .item= link_to 'logout', destroy_user_session_path, method: :delete
-    .ui.container
-      .ui.grid
-        = yield
+
+    = yield

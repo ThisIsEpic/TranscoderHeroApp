@@ -1,17 +1,23 @@
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "off"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+.ui.middle.aligned.center.aligned.grid.registration-form
+  .column.narrow-form
+    %h2.ui.blue.image.header
+      = image_tag('Hero-Face.png', class: 'image')
+      .content Log in
+
+    = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'ui large form' }) do |f|
+      .ui.stacked.segment
+        .field
+          = f.label :email
+          = f.email_field :email, autofocus: true
+        .field
+          = f.label :password
+          = f.password_field :password, autocomplete: "off"
+        - if devise_mapping.rememberable?
+          .inline.field
+            .ui.toggle.checkbox
+              = f.check_box :remember_me
+              = f.label :remember_me
+
+        = f.submit "Log in", class: 'ui fluid large blue submit button'
+    .ui.message
+      = render "devise/shared/links"

@@ -30,6 +30,7 @@ gem 'aasm'
 gem 'sidekiq'
 gem 'rest-client'
 gem 'validate_url'
+gem 'streamio-ffmpeg'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
