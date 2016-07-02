@@ -7,8 +7,10 @@ class TranscodingJobManager
     @job = transcoding_job
     @app = transcoding_job.app
     @rfm = RemoteFileManager.new(@job.input)
+    @upload_manager = JobUploaderManager.new(@app)
     @download_path = [Rails.root, 'public/system/inputs', @app.id, @job.local_pathname].join('/')
     @output_dir = "#{Rails.root}/public/system/outputs/#{@app.id}/#{@job.id}"
+    @remote_path = Digest::MD5.hexdigest([@app.id, @job.id, @job.local_pathname].join('/'))
   end
 
   def process!
@@ -16,19 +18,31 @@ class TranscodingJobManager
     download_file
     transcode_file
     upload_products
-    @job.complete!
+    # @job.complete!
+    remove_files_from_hard_drive
   end
 
   def download_file
     @local_file = @rfm.download!(@download_path)
   end
 
+  def job_successful?
+    File.exist?("#{@output_dir}/#{@job.local_pathname}")
+  end
+
   def upload_products
-    if encoded.valid?
+    @upload_manager.upload_directory(@output_dir, @remote_path)
+    if job_successful?
 
     else
       @job.fail!
-      return false
+    end
+  end
+
+  def remove_files_from_hard_drive
+    # make sure all files have successfully been uploaded before we delete them
+    if @job.completed?
+      # Create Background Job
     end
   end
 
