@@ -31,7 +31,6 @@ gem 'sidekiq'
 gem 'rest-client'
 gem 'validate_url'
 gem 'streamio-ffmpeg'
-gem 'capistrano-sidekiq'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -60,6 +59,7 @@ group :development do
   gem 'capistrano-rails', require: false
   gem 'capistrano-bundler', require: false
   gem 'capistrano-rvm'
+  gem 'capistrano-sidekiq'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
