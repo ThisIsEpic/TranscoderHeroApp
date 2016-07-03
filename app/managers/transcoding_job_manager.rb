@@ -17,9 +17,10 @@ class TranscodingJobManager
     @job.process! if @job.created?
     download_file
     transcode_file
-    upload_products
-    # @job.complete!
-    remove_files_from_hard_drive
+    if upload_products
+      @job.complete!
+      remove_files_from_hard_drive
+    end
   end
 
   def download_file
@@ -27,22 +28,22 @@ class TranscodingJobManager
   end
 
   def job_successful?
-    File.exist?("#{@output_dir}/#{@job.local_pathname}")
+    File.exist?("#{@output_dir}/#{@job.local_pathname}.mp4")
   end
 
   def upload_products
-    @upload_manager.upload_directory(@output_dir, @remote_path)
     if job_successful?
-
-    else
-      @job.fail!
+      @upload_manager.upload_directory(@output_dir, @remote_path)
+      return true
     end
+
+    false
   end
 
   def remove_files_from_hard_drive
     # make sure all files have successfully been uploaded before we delete them
     if @job.completed?
-      # Create Background Job
+      FileUtils.rm_rf([@output_dir, @download_path], secure: true)
     end
   end
 
