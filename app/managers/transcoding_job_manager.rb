@@ -1,7 +1,7 @@
 require 'open3'
 
 class TranscodingJobManager
-  attr_reader :encoded
+  attr_reader :encoded, :output_bucket_url
 
   def initialize(transcoding_job)
     @job = transcoding_job
@@ -18,9 +18,28 @@ class TranscodingJobManager
     download_file
     transcode_file
     if upload_products
+      @job.update! output_data: output_data
       @job.complete!
       remove_files_from_hard_drive
     end
+  end
+
+  def output_bucket_url
+    @output_bucket_url ||= Aws::S3::Bucket.new(@app.s3_output_bucket, client: AppManager.new(@app).s3).url
+  end
+
+  def output_data
+    base_path = "#{output_bucket_url}/#{@remote_path}"
+    video_url = "#{base_path}/#{@job.local_pathname}.mp4"
+    frame_basepath = "#{base_path}/frames/#{@job.local_pathname}"
+    frames = Dir.glob("#{@output_dir}/frames/*.jpg")
+
+     {
+      video: video_url,
+      frame_basepath: frame_basepath,
+      frames_count: frames.size,
+      base_url: base_path
+    }
   end
 
   def download_file

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160630214440) do
+ActiveRecord::Schema.define(version: 20160705215234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20160630214440) do
     t.datetime "last_webhook_sent_at"
     t.integer  "webhook_delivery_retries", default: 0
     t.string   "webhook_url"
+    t.json     "output_data"
     t.index ["app_id"], name: "index_transcoding_jobs_on_app_id", using: :btree
   end
 
